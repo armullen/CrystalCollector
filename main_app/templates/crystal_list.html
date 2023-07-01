@@ -1,6 +1,10 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
 
-<h1 class="title">My Collection</h1>
+{% block title %}My Collection{% endblock %}
+
+{% block content %}
+
+<h1 class="title pt-5">{{header}}</h1>
 
 <form class="mb-5" method="get">
   <div class="field has-addons">

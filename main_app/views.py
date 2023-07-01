@@ -33,5 +33,11 @@ class CrystalList(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["crystals"] = Crystal.objects.all()
+        name = self.request.GET.get('name')
+        if name != None:
+            context['crystals'] = Crystal.objects.filter(name__icontains=name)
+            context['header'] = f'Searching for {name}'
+        else:
+            context['crystals'] = Crystal.objects.all()
+            context['header'] = 'Crystal Collection'
         return context
