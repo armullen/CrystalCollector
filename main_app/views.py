@@ -4,6 +4,8 @@ from django.views import View
 from django.http import HttpResponse
 from django.views.generic.base import TemplateView
 from .models import Crystal
+from django.views.generic.edit import CreateView
+from django.views.generic import DetailView
 
 # Create your views here.
 
@@ -41,3 +43,13 @@ class CrystalList(TemplateView):
             context['crystals'] = Crystal.objects.all()
             context['header'] = 'Crystal Collection'
         return context
+
+class CrystalCreate(CreateView):
+    model = Crystal
+    fields = ['name', 'img', 'bio', 'location']
+    template_name = 'crystal_create.html'
+    success_url = '/crystals/'
+
+class CrystalDetail(DetailView):
+    model = Crystal
+    template_name = 'crystal_detail.html'
