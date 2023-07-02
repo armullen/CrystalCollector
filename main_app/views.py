@@ -4,7 +4,7 @@ from django.views import View
 from django.http import HttpResponse
 from django.views.generic.base import TemplateView
 from .models import Crystal
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 
 # Create your views here.
@@ -59,3 +59,8 @@ class CrystalUpdate(UpdateView):
     fields = ['name', 'img', 'bio', 'location']
     template_name = 'crystal_update.html'
     success_url = '/crystals/'
+
+class CrystalDelete(DeleteView):
+    model = Crystal
+    template_name = 'crystal_delete_confirmation.html'
+    sucess_url = '/crystals/'
