@@ -6,8 +6,13 @@
 <div class="detail__name">
 <h1 class='title'>{{crystal.name}}</h1>
 </div>
-<div class="'detail__container">
+<div class="detail__container">
     <div class="buttons">
+        <a href="{% url 'crystal_update' crystal.pk %}" class="button is-info">Update
+            <span class="icon">
+                <i class="fas fa-edit"></i>
+            </span>
+        </a>
         <a href="" class="button is-danger">
             <span class="icon">
                 <i class="fas fa-trash-alt"></i>
