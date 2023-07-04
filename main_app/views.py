@@ -1,9 +1,9 @@
 from typing import Any
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
-from django.http import HttpResponse
+# from django.http import HttpResponse
 from django.views.generic.base import TemplateView
-from .models import Crystal
+from .models import Crystal, Use
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 
@@ -50,3 +50,11 @@ class CrystalDelete(DeleteView):
     model = Crystal
     template_name = 'crystal_delete_confirmation.html'
     success_url = '/crystals/'
+
+class UseCreate(View):
+    
+    def post(self, request, pk):
+        mynameforname = request.POST.get('name')
+        mynameforthiscrystal = Crystal.objects.get(pk=pk)
+        Use.objects.create(name=mynameforname, crystal=mynameforthiscrystal)
+        return redirect('crystal_detail', pk=pk)

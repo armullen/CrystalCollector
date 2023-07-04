@@ -8,16 +8,50 @@
 </div>
 <div class="detail__container">
     <div class="buttons">
-        <a href="{% url 'crystal_update' crystal.pk %}" class="button is-info">Update
+        <a href="{% url 'crystal_update' crystal.pk %}" class="button is-info">
             <span class="icon">
                 <i class="fas fa-edit"></i>
             </span>
         </a>
-        <a href="{% url 'crystal_delete' crystal.pk %}" class="button is-danger">Delete
+        <a href="{% url 'crystal_delete' crystal.pk %}" class="button is-danger">
             <span class="icon">
                 <i class="fas fa-trash-alt"></i>
             </span>
         </a>
+    </div>
+    <form class="mb-5" action="{% url 'use_create' crystal.pk %}" method="post">
+        {% csrf_token %} 
+        <div class="field has-addons">
+            <div class="control">
+                <input
+                    class="input"
+                    type="text"
+                    name="name"
+                    placeholder="uses/benefits"
+                    required
+                />
+            </div>
+            <div class="control">
+                <input class="button is-primary" type="submit" value="Add A Use/Benefit"/>
+            </div>
+        </div>
+    </form>
+    <div class="detail__uses mb-5">
+        <h3 class="title is-3">Uses</h3>
+
+        {% for use in crystal.uses.all %} 
+        <div class="use">
+            <span>{{forloop.counter}}</span>
+            <span><b>{{use.name}}</b></span>
+        </div>
+        {% empty %} 
+        <article class="message">
+            <div class="'message-header">
+                <p>No Uses Available</p>
+            </div>
+        </article>
+
+        {% endfor %} 
     </div>
     <div class="detail__about">
         <h4 class="title is-4">About</h4>
