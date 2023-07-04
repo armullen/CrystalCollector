@@ -9,5 +9,6 @@ urlpatterns = [
    path('crystals/<int:pk>/', views.CrystalDetail.as_view(), name='crystal_detail'),
    path('crystals/<int:pk>/update', views.CrystalUpdate.as_view(), name='crystal_update'),
    path('crystals/<int:pk>/delete', views.CrystalDelete.as_view(), name="crystal_delete"),
-   path('crystals/<int:pk>/uses/new', views.UseCreate.as_view(), name='use_create')
+   path('crystals/<int:pk>/uses/new', views.UseCreate.as_view(), name='use_create'),
+   path('wishlists/<int:pk>/crystals/<int:crystal_pk>/', views.WishlistCrystalAssoc.as_view(), name='wishlist_crystal_assoc'),
 ]

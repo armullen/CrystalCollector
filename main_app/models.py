@@ -21,3 +21,11 @@ class Use(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+class Wishlist(models.Model):
+    title = models.CharField(max_length=150)
+    crystals = models.ManyToManyField(Crystal)
+
+    def __str__(self):
+        return self.title

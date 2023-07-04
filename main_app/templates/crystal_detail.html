@@ -43,6 +43,26 @@
         <div class="use">
             <span>{{forloop.counter}}</span>
             <span><b>{{use.name}}</b></span>
+            <span>
+                <div class="dropdown">
+                    <div class="dropdown=trigger">
+                        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                            <span>Add to Wishlist</span>
+                            <span class="icon is-small">
+                                <i class="fas fa-andgle-down" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                        <div class="dropdown-content">
+                            {% for wishlist in wishlists %} 
+                                <a href="{% url 'wishlist_crystal_assoc' wishlist.pk crystal.pk %}?assoc=add"
+                                    class="dropdown-item">{{ wishlist.title }}</a>
+                            {% endfor %} 
+                        </div>
+                    </div>
+                </div>
+            </span>
         </div>
         {% empty %} 
         <article class="message">

@@ -1,5 +1,32 @@
 {% extends 'base.html' %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<h1>Welcome to The Crystal Collector</h1>
+<div class="home__wishlists">
+        {% for wishlist in wishlists %} 
+            <div class="wishlist mb-5">
+                <h3 class="title is-3 has text-sucess">{{wishlist.title}}</h3>
+                <hr />
+
+                {% for crystal in wishlist.crystals.all %} 
+
+                    <div class="crystal">
+                        <span>{{forloop.counter}}</span>
+                        <span><b>{{crystal.name}}</b></span>
+                        <span>
+                            <a href="{% url 'wishlist_crystal_assoc' wishlist.pk crystal.pk %}?assoc=remove"
+                            class="button is-danger is-outlined">
+                                <span class="icon is-small">
+                                    <i class="fas fa-times"></i>
+                                </span>
+                            </a>
+                        </span>
+                    </div>
+
+                {% endfor %}
+            </div>
+        {% empty %}     
+            <div class="wishlist mb-5">"There are no crystals in your wishlist"</div>
+        {% endfor %} 
+    </div>
+
 {% endblock %}
